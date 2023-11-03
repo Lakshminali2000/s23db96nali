@@ -1,5 +1,4 @@
-# f23wb96nali
-README.md created in Lab 10 <br>
-Render Server Link : https://f23wb96nali.onrender.com
-**CLASS NAME : FRUITS**
-**CLASS ATTRIBUTES :NAME(string),COLOR(string),CALORIES(int)**
+# s23db96nali
+VENKATALAKSHMI NALI....
+README.md created in Lab 11 <br>
+Render Server Link : https://s23db96nali.onrender.com
