@@ -2,6 +2,10 @@ extends layout
 
 block content
   h1= title
+  if (toShow == null)
+h2 No instance to delete
+else
+
   - let fruitid = toShow._id
   - let name = toShow.NAME
   - let color = toShow.COLOR
