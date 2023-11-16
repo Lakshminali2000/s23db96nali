@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  - let fruitid = toShow._id
+  - let name = toShow.NAME
+  - let color = toShow.COLOR
+  - let calories = toShow.CALORIES
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{fruitid}
+
+  - let actionid = "/resource/fruit/" + fruitid
+  form(id='fruitForm', action= actionid, method="PUT")
+    div.form-group
+      label.fruitAttr(for='NAME') fruit_Name
+      input#passengerName(type='text', name='NAME', value= NAME )
+    div.form-group
+      label.fruitAttr(for='COLOR') fruit_color
+      input#ticketNumber(type='text', name='COLOR', value= COLOR )
+    div.form-group
+      label.fruitAttr(for='CALORIES') fruit_Calories
+      input#seatNumber(type='number', name='CALORIES', value= CALORIES )
+    input(type="submit")
+
+    script.
+      document.forms['fruitForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error );
+        });
+      });

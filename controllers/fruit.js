@@ -128,5 +128,36 @@ exports.fruit_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+
+
+    // Handle building the view for updating a fruit.
+// query provides the id
+exports.fruit_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await fruit.findById(req.query.id)
+    res.render('fruitupdate', { title: 'fruit Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+
+    // Handle a delete one view with id from query
+exports.fruit_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await fruit.findById(req.query.id)
+    res.render('fruitdelete', { title: 'fruit Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    
     
     
