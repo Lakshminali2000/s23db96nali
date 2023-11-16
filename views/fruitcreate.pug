@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id='fruitForm', action="/resource/fruit", method="POST")
+    div.form-group-create
+      label.fruitAttr(for='NAME') fruit_Name
+      input#fruit_Name(type='text', name='NAME')
+    div.form-group-create
+      label.fruitAttr(for='COLOR') fruit_color
+      input#fruit_Age(type='text', name='COLOR')
+    div.form-group-create
+      label.fruitAttr(for='CALORIES') fruit_calories
+      input#fruit_color(type='number', name='CALORIES')
+    input(type="submit")
+    script.
+      document.forms['fruitForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Save succeeded")
+          // TODO handle the body
+        }).catch((error) => {
+          // TODO handle the error in
+          alert("Save failed " + error )
+        });
+      });

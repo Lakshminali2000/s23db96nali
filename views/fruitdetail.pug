@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  - let fruitid = toShow._id
+  - let name = toShow.NAME
+  - let color = toShow.COLOR
+  - let calories= toShow.CALORIES
+
+  div
+    div.row
+      div(class='fruitAttr mr-4') fruit ID is:
+      div #{fruitid}
+
+    div.row
+      div(class='fruitAttr mr-4')  name is:
+      div #{name}
+
+    div.row
+      div(class='fruitAttr mr-4') color is:
+      div #{color}
+
+    div.row
+      div(class='fruitAttr mr-4') Calories:
+      div #{calories}
