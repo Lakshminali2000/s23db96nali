@@ -3,9 +3,23 @@ extends layout
 block content
   h1= title
 
-    - var items=results
+  - var items = results
+
   div(class="container-fluid")
-  div(class="row")
-   each s in items
-    div(class="col-sm-2") #{s.NAME}, #{s.COLOR}, #{s.CALORIES}
-   
+    div(class="row")
+      each s in items
+        div(class="col-sm-2")
+          | #{s.NAME}, #{s.COLOR}, #{s.CALORIES}
+          - let destination = `/fruit/update?id=${s._id}`
+          div(class="col-sm-2", onclick=`buy(${s})`)
+            | #{s.NAME}, #{s.AGE}, #{s.COLOR}
+            button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+
+  script.
+    function buy(a) {
+      alert(`You purchased Item ${a.NAME}`);
+    }
+
+    function dispatch(path) {
+      window.location.href = path;
+    }
